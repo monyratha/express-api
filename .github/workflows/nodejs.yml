@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone repository
-        run: git clone https://github.com/monyratha/express-api.git
-      - name: List folders
-        run: ls
+      - name: Clone Action repository
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+      - name: Test Node Version
+        run: node -v
+      - name: check current working directory
+        run: pwd

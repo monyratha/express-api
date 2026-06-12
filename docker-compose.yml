@@ -1,0 +1,19 @@
+# Services that make up this local Docker environment.
+services:
+  # Express API container with SSH access enabled.
+  express-api:
+    # Build the image from the Dockerfile in this project.
+    build:
+      context: .
+      args:
+        # Defaults are for local development; override from your shell if needed.
+        SSH_USER: ${SSH_USER:-root}
+        SSH_PASSWORD: ${SSH_PASSWORD:-123456}
+    container_name: express-api
+    # Port used by src/server.js inside the container.
+    environment:
+      PORT: 3000
+    # Expose the API on localhost:3000 and SSH on localhost:2222.
+    ports:
+      - "3000:3000"
+      - "2222:22"
